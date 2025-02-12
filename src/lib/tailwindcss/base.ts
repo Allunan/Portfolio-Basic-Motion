@@ -1,8 +1,8 @@
 export const grid = {
   desktop: {
-    gap: 16,
-    columns: 12,
-    container: 1280
+    gap: 8,
+    columns: 8,
+    container: 1872
   },
   tablet: {
     gap: 12,

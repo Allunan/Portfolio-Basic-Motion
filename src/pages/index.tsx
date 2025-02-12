@@ -1,75 +1,67 @@
 import type React from "react"
+import { data } from "@/constants"
 
 const Index: React.FC = () => {
   return (
-    <section className="span-max-w-4 md:span-max-w-8 xl:span-max-w-12 mx-auto pt-span-12">
-      <h1 className="text-4xl font-bold">Sizes</h1>
-      <Sizes />
-      <h1 className="text-4xl font-bold mt-span-12">Flex</h1>
-      <Flex />
-      <h1 className="text-4xl font-bold mt-span-12">Wrap</h1>
-      <Wrap />
+    <section className="span-max-w-4 md:span-max-w-8 xl:span-max-w-8 mx-auto pt-span-12 uppercase">
+      <div>
+        {data.works.map((work, index) => {
+          const contents = work.images.map((image) => {
+            return {
+              type: "image",
+              content: image
+            }
+          })
+          contents.push({
+            type: "text",
+            content: work.description
+          })
+          if (contents.length < 7) {
+            const diff = 7 - contents.length
+            for (let i = 0; i < diff; i++) {
+              contents.push({
+                type: "empty",
+                content: ""
+              })
+            }
+          }
+
+          const shuffled = contents.sort(() => Math.random() - 0.5)
+          return (
+            <div key={index} className="flex gap-base-2 my-base-4 ">
+              <div className="span-w-1">
+                <span>{work.index}</span>
+                <span>{work.title}</span>
+                {work.year}
+                <a href={work.preview}>Live Preview</a>
+              </div>
+
+              {shuffled.map((content, index) => {
+                if (content.type === "empty") {
+                  return <div key={index} className="span-w-1"></div>
+                }
+                if (content.type === "text") {
+                  return (
+                    <div key={index} className="span-w-1">
+                      {content.content}
+                    </div>
+                  )
+                }
+                return (
+                  <div key={index} className="span-w-1">
+                    <img
+                      className="object-cover w-full h-full"
+                      src={content.content}
+                    />
+                  </div>
+                )
+              })}
+            </div>
+          )
+        })}
+      </div>
     </section>
   )
 }
 
 export default Index
-
-const Sizes: React.FC = () => {
-  return (
-    <div className="flex flex-col gap-base-2 md:gap-base-3 xl:gap-base-4 my-4">
-      <div className="bg-red-500 span-w-4 md:span-w-8 xl:span-w-12">
-        Width Full
-      </div>
-      <div className="bg-red-500 span-w-2 md:span-w-4 xl:span-w-6">
-        Width : 1/2
-      </div>
-    </div>
-  )
-}
-
-const Flex: React.FC = () => {
-  return (
-    <>
-      <div className="flex gap-base-2 md:gap-base-3 xl:gap-base-4 my-4">
-        <div className="bg-red-500 span-w-6 xl:span-w-9">Width 9</div>
-        <div className="bg-red-500 span-w-2 xl:span-w-3">Width 3</div>
-      </div>
-      <div className="flex gap-base-2 md:gap-base-3 xl:gap-base-4 my-4">
-        <div className="bg-red-500 span-w-4 xl:span-w-6">Width 6</div>
-        <div className="bg-red-500 span-w-4 xl:span-w-6">Width 6</div>
-      </div>
-      <div className="flex gap-base-2 md:gap-base-3 xl:gap-base-4 my-4 justify-center flex-wrap">
-        <div className="bg-red-500 span-w-2 xl:span-w-4">Width 4</div>
-        <div className="bg-red-500 span-w-2 xl:span-w-4">Width 4</div>
-        <div className="bg-red-500 span-w-2 xl:span-w-4">Width 4</div>
-      </div>
-      <div className="flex gap-base-2 md:gap-base-3 xl:gap-base-4 my-4">
-        <div className="bg-red-500 span-w-2 xl:span-w-3">Width 3</div>
-        <div className="bg-red-500 span-w-2 xl:span-w-3">Width 3</div>
-        <div className="bg-red-500 span-w-2 xl:span-w-3">Width 3</div>
-        <div className="bg-red-500 span-w-2 xl:span-w-3">Width 3</div>
-      </div>
-    </>
-  )
-}
-const Wrap: React.FC = () => {
-  return (
-    <>
-      <div className="flex gap-base-2 md:gap-base-3 xl:gap-base-4 my-4 flex-wrap">
-        <div className="bg-red-500 span-min-w-3 span-w-4 xl:span-w-3">
-          Width 3
-        </div>
-        <div className="bg-red-500 span-min-w-3 span-w-4 xl:span-w-3">
-          Width 3
-        </div>
-        <div className="bg-red-500 span-min-w-3 span-w-4 xl:span-w-3">
-          Width 3
-        </div>
-        <div className="bg-red-500 span-min-w-3 span-w-4 xl:span-w-3">
-          Width 3
-        </div>
-      </div>
-    </>
-  )
-}
