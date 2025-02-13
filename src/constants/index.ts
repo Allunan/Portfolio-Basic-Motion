@@ -1,6 +1,8 @@
-const data = {
+import type { DataType } from "@/types"
+
+const data: DataType = {
   name: "Ahmed l5dar",
-  bio: "I'm a creative designer and developer with a keen eye for aesthetics and a love for turning ideas into digital art. This perspective helps me see the world as a canvas for innovation and design. ",
+  bio: "I'm a creative designer and developer with a keen eye for aesthetics and a love for turning ideas into digital art. This perspective helps me see the world as a canvas for innovation and design.",
   hero_picture: "/hero.png",
   works: [
     {
@@ -9,8 +11,57 @@ const data = {
       year: "2024",
       preview: "https://www.google.com/",
       description:
-        "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      images: ["work1_1.png", "work1_2.png", "work1_3.png", "work1_4.png"]
+        "Interactive experience to create your own unique one-of-a-kind music pass with generative artwork and your own sonic anthem.",
+      images: [
+        "project 1 - image 1.png",
+        "project 1 - image 2.png",
+        "project 1 - image 4.png",
+        "project 1 - image 5.png",
+        "project 1 - image 7.png"
+      ]
+    },
+    {
+      index: "002",
+      title: "L’Oréal",
+      year: "2024",
+      description:
+        "Interactive experience to create your own unique one-of-a-kind music pass with generative artwork and your own sonic anthem.",
+      images: [
+        "project 2 - image 1.png",
+        "project 2 - image 3.png",
+        "project 2 - image 4.png",
+        "project 2 - image 7.png"
+      ]
+    },
+    {
+      index: "003",
+      title: "Energia",
+      year: "2024",
+      preview: "https://www.google.com/",
+      description:
+        "Interactive experience to create your own unique one-of-a-kind music pass with generative artwork and your own sonic anthem.",
+      images: [
+        "project 3 - image 2.png",
+        "project 3 - image 4.png",
+        "project 3 - image 5.png",
+        "project 3 - image 6.png",
+        "project 3 - image 7.png"
+      ]
+    },
+    {
+      index: "004",
+      title: "Audi",
+      year: "2024",
+      preview: "https://www.google.com/",
+      description:
+        "Interactive experience to create your own unique one-of-a-kind music pass with generative artwork and your own sonic anthem.",
+      images: [
+        "project 4 - image 1.png",
+        "project 4 - image 2.png",
+        "project 4 - image 4.png",
+        "project 4 - image 6.png",
+        "project 4 - image 7.png"
+      ]
     }
   ],
   skills: [
@@ -24,17 +75,23 @@ const data = {
     },
     {
       title: "Tech",
-      items: ["Next.js", "Three.js", "Node.js"]
+      items: ["Next.js", "Vue.js", "Three.js", "Node.js"]
     },
     {
       title: "Design",
-      items: ["Blender", "Figma", "Spline"]
+      items: ["Blender", "Spline", "Figma", "Adobe Suite"]
     }
   ],
-  socials: {
-    linkedin: "https://www.google.com/",
-    instagram: "https://www.google.com/"
-  }
+  socials: [
+    {
+      title: "LinkedIn",
+      link: "https://linkedin.com/in/google"
+    },
+    {
+      title: "Instagram",
+      link: "https://instagram.com/google"
+    }
+  ]
 }
 
 export { data }

@@ -39,11 +39,9 @@
       "  children: React.ReactNode",
       "};",
       "",
-      "const ${1:${TM_FILENAME_BASE/(.)/${1:/upcase}/}}: React.FC<Props> = ({ className, children }) => {",
+      "export const ${1:${TM_FILENAME_BASE/(.)/${1:/upcase}/}}: React.FC<Props> = ({ className, children }) => {",
       "  return <div className={cn(\"\", className)}>{children}</div>;",
       "};",
-      "",
-      "export default ${1:${TM_FILENAME_BASE/(.)/${1:/upcase}/}};",
       ""
     ]
   },
@@ -54,11 +52,9 @@
       "import React from \"react\";",
       "import { cn } from \"@/utils\";",
       "",
-      "const ${1:${TM_FILENAME_BASE/(.)/${1:/upcase}/}} = ({ className, children }) => {",
+      "export const ${1:${TM_FILENAME_BASE/(.)/${1:/upcase}/}} = ({ className, children }) => {",
       "  return <div className={cn(\"\", className)}>{children}</div>;",
       "};",
-      "",
-      "export default ${1:${TM_FILENAME_BASE/(.)/${1:/upcase}/}};",
       ""
     ]
   }
