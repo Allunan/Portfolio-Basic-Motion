@@ -8,29 +8,89 @@ const Index: React.FC = () => {
     <section className="mx-[var(--grid-margins)] flex justify-center pt-span-12 uppercase">
       <div>
         {data.works.map((work) => {
-          const contents = work.images.map((image) => {
-            return {
+          const shuffleCards = (work: {
+            index: string
+            title: string
+            year: string
+            preview?: string
+            description: string
+            images: string[]
+          }) => {
+            const contents = work.images.map((image) => ({
               type: "image",
               content: image
-            }
-          })
+            }))
 
-          contents.push({
-            type: "text",
-            content: work.description
-          })
+            contents.push({
+              type: "text",
+              content: work.description
+            })
 
-          if (contents.length < 7) {
-            const diff = 7 - contents.length
-            for (let i = 0; i < diff; i++) {
+            const targetLength = 7
+            while (contents.length < targetLength) {
               contents.push({
                 type: "empty",
                 content: ""
               })
             }
+
+            let shuffled = [...contents] // Create a copy to avoid modifying the original
+
+            const isValidShuffle = (
+              array: {
+                type: string
+                content: string
+              }[]
+            ) => {
+              for (let i = 0; i < array.length - 1; i++) {
+                if (
+                  array[i].type === "text" &&
+                  array[i + 1].type === "empty" &&
+                  i + 2 < array.length &&
+                  array[i + 2].type === "empty"
+                ) {
+                  return false // Text followed by two empties
+                }
+              }
+
+              if (array[array.length - 1].type === "text") {
+                return false // Last card is text
+              }
+              if (
+                array.length >= 2 &&
+                array[array.length - 2].type === "text" &&
+                array[array.length - 1].type === "empty"
+              ) {
+                return false // Last two cards are text then empty
+              }
+              if (
+                array.length >= 2 &&
+                array[array.length - 2].type === "empty" &&
+                array[array.length - 1].type === "text"
+              ) {
+                return false // Last two cards are empty then text
+              }
+              return true
+            }
+
+            let attempts = 0
+            const maxAttempts = 1000 // Adjust as needed
+
+            while (attempts < maxAttempts) {
+              shuffled = [...contents].sort(() => Math.random() - 0.5) // Shuffle a copy
+              if (isValidShuffle(shuffled)) {
+                return shuffled
+              }
+              attempts++
+            }
+
+            console.warn(
+              "Card shuffling failed after multiple attempts. Returning an invalid shuffle."
+            )
+            return shuffled // Return the last shuffled array, even if invalid, to prevent infinite loops.
           }
 
-          const shuffled = contents.sort(() => Math.random() - 0.5)
+          const shuffled = shuffleCards(work)
 
           return (
             <React.Fragment key={work.index}>
@@ -48,8 +108,8 @@ const Index: React.FC = () => {
                   </div>
                 </div>
 
-                {shuffled.map((content, index) => {
-                  if (content.type === "empty") {
+                {shuffled.map(({ type, content }, index) => {
+                  if (type === "empty") {
                     return (
                       <div
                         key={`${work.index}-${index}`}
@@ -58,12 +118,12 @@ const Index: React.FC = () => {
                     )
                   }
 
-                  if (content.type === "text") {
+                  if (type === "text") {
                     return (
                       <div
                         key={`${work.index}-${index}`}
                         className="span-w-1 aspect-[3/4]">
-                        <p className="text-justify text">{content.content}</p>
+                        <p className="text-justify text">{content}</p>
                       </div>
                     )
                   }
@@ -71,7 +131,7 @@ const Index: React.FC = () => {
                   return (
                     <Image
                       alt=""
-                      src={content.content}
+                      src={content}
                       key={`${work.index}-${index}`}
                       className="span-w-1 aspect-[3/4]"
                     />
