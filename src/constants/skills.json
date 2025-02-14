@@ -1,0 +1,21 @@
+{
+  "skills": [
+    {
+      "title": "Social",
+      "skills": [
+        "Digital Advertising",
+        "Social Media",
+        "Management",
+        "Commercial Strategy"
+      ]
+    },
+    {
+      "title": "Tech",
+      "skills": ["Node js", "Three js", "Vue js", "Next js"]
+    },
+    {
+      "title": "Design",
+      "skills": ["Blender", "Spline", "Figma", "Adobe Suite"]
+    }
+  ]
+}

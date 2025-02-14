@@ -94,4 +94,5 @@ const data: DataType = {
   ]
 }
 
-export { data }
+import { skills } from "./skills.json"
+export { data, skills }
