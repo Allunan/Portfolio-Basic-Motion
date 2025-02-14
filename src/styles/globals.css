@@ -17,7 +17,8 @@
 }
 
 html,
-body {
+body,
+#root {
   min-width: 100dvw;
   min-height: 100dvh;
 }
@@ -26,8 +27,8 @@ body {
   font-size: 14px;
   font-weight: 500;
   line-height: 120%;
-  background: #F2F2F3;
   letter-spacing: 0;
+  text-transform: uppercase;
   color: hsl(240, 5%, 40%);
   font-family:
     "Finlandica",

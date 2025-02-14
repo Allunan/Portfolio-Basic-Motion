@@ -2,20 +2,23 @@ import type { GridVars } from "./types"
 
 export const grid: GridVars = {
   maxWidth: 1920,
-  desktop: {
+
+  phone: {
     gap: 8,
-    columns: 8,
-    margins: 24
+    columns: 2,
+    margins: 8
   },
+
   tablet: {
     gap: 8,
     columns: 4,
     margins: 16
   },
-  phone: {
+
+  desktop: {
     gap: 8,
-    columns: 2,
-    margins: 8
+    columns: 8,
+    margins: 24
   }
 }
 
@@ -27,7 +30,7 @@ export const tailwindCSSVars = {
     "--grid-margins": `${grid.phone.margins}px`,
     "--grid-max-width": `${grid.maxWidth}px`
   },
-  "@media (min-width: 540px)": {
+  "@media (min-width: 640px)": {
     // Tablet
     ":root": {
       "--grid-columns": `${grid.tablet.columns}`,

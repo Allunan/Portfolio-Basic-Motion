@@ -1,18 +1,31 @@
-import React from "react"
+import { Link } from "@/components/shared/link"
 
-export const Footer: React.FC = () => {
+interface Props {
+  data: {
+    name: string
+    socials: {
+      title: string
+      link: string
+    }[]
+  }
+}
+
+export const Footer: React.FC<Props> = ({ data }) => {
+	
   return (
-    <footer className="flex span-w-2 gap-base-2 md:span-w-4 lg:span-w-8 flex-wrap  my-2 mx-[var(--grid-margins)] ">
-      <div className="span-w-1 md:span-w-2 lg:span-w-6">
-        <p className="text uppercase "> Ahmed L5dar</p>
+    <footer className="flex gap-base-2 flex-wrap pt-4 pb-8 mx-[var(--grid-margins)]">
+      <div className="span-w-1 sm:span-w-2 lg:span-w-6">
+        <span className="text-lg">{data.name}</span>©
       </div>
-      <div className="span-w-1 flex flex-col text-end ">
-        <p className="text uppercase">LinkedIn</p>
-        <p className="text uppercase">Instagram</p>
+      <div className="span-w-1 flex flex-col text-end">
+        {data.socials.map(({ title, link }) => (
+          <Link key={title} href={link}>
+            {title}
+          </Link>
+        ))}
       </div>
       <div className="span-w-1">
-        <p className="text uppercase md:text-end">
-          {" "}
+        <p className="sm:text-end">
           <span>Made by</span> The Collective
         </p>
       </div>

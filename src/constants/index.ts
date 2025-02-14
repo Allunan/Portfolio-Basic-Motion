@@ -1,6 +1,6 @@
 import type { DataType } from "@/types"
 
-const data: DataType = {
+export const data: DataType = {
   name: "Ahmed l5dar",
   bio: "I'm a creative designer and developer with a keen eye for aesthetics and a love for turning ideas into digital art. This perspective helps me see the world as a canvas for innovation and design.",
   hero_picture: "/hero.png",
@@ -93,6 +93,3 @@ const data: DataType = {
     }
   ]
 }
-
-import { skills } from "./skills.json"
-export { data, skills }
