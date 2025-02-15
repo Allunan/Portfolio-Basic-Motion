@@ -1,9 +1,9 @@
+import type { DataType } from "@/types"
+
 import { Link } from "@/components/shared/link"
 
 interface Props {
-  data: {
-    name: string
-  }
+  data: DataType
 }
 
 export const Header: React.FC<Props> = ({ data }) => {
