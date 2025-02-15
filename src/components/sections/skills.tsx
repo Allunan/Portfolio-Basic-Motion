@@ -9,7 +9,7 @@ export const Skills: React.FC<Props> = () => {
   return (
     <section className="flex  my-2 mx-[var(--grid-margins)] h-[350px] uppercase items-center ">
       <div className="lg:span-w-8 span-w-2 sm:span-w-4 flex  min-h-24 flex-wrap gap-base-2">
-        <div className="flex span-w-1  lg:span-w-4  items-top justify-end text">
+        <div className="flex span-w-1 md:span-w-2 lg:span-w-4  items-top justify-end text">
           <h3 className="text-[#AFAFB6]"> My skills</h3>
         </div>
         <div className="span-w-1 md:span-w-3 lg:span-w-4 flex gap-base-2 flex-col sm:flex-row sm:span-w-2 ">
