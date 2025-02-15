@@ -8,7 +8,7 @@ interface Props {
 
 export const Header: React.FC<Props> = ({ data }) => {
   return (
-    <header className="mx-[var(--grid-margins)] py-4 flex gap-base-2 justify-between sm:items-center">
+    <header className="mx-grid py-4 flex gap-base-2 justify-between sm:items-center">
       <div className="span-w-1">
         <a href="/" className="text-lg">
           {data.name}

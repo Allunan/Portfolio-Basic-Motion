@@ -6,7 +6,7 @@ import { Skills } from "@/components/sections/skills"
 import { Works } from "@/components/sections/works"
 import { About } from "@/components/sections/about"
 
-const Index: React.FC = () => {
+const Page: React.FC = () => {
   return (
     <>
       <Header data={data} />
@@ -18,4 +18,4 @@ const Index: React.FC = () => {
   )
 }
 
-export default Index
+export default Page

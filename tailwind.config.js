@@ -17,7 +17,35 @@ export default {
     extend: {
       margin: margin(),
       gap: gap(),
-      padding: padding()
+      padding: padding(),
+
+      colors: {
+        primary: "#55555E",
+        secondary: "#61616B",
+        muted: "#AFAFB6",
+        background: "#F2F2F3"
+      },
+
+      fontFamily: {
+        sans: [
+          "Finlandica",
+          "system-ui",
+          "-apple-system",
+          "BlinkMacSystemFont",
+          "Segoe UI",
+          "Roboto",
+          "Oxygen",
+          "Ubuntu",
+          "Cantarell",
+          "Open Sans",
+          "Helvetica Neue",
+          "sans-serif"
+        ]
+      },
+
+      aspectRatio: {
+        card: "3 / 4"
+      }
     }
   },
   plugins: [

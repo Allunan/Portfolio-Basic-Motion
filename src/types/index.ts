@@ -25,3 +25,9 @@ export interface DataType {
   skills: SkillType[]
   socials: SocialType[]
 }
+
+export enum CardType {
+  "TEXT",
+  "IMAGE",
+  "EMPTY"
+}

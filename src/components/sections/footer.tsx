@@ -8,7 +8,7 @@ interface Props {
 
 export const Footer: React.FC<Props> = ({ data }) => {
   return (
-    <footer className="flex gap-base-2 flex-wrap pt-4 pb-8 mx-[var(--grid-margins)]">
+    <footer className="flex gap-base-2 flex-wrap pt-4 pb-8 mx-grid">
       <div className="span-w-1 sm:span-w-2 lg:span-w-6">
         <span className="text-lg">{data.name}</span>©
       </div>
