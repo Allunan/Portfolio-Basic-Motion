@@ -1,5 +1,4 @@
 import React from "react"
-import { cn } from "@/utils"
 import { Image } from "../shared/image"
 
 interface Props {
@@ -23,16 +22,12 @@ export const About: React.FC<Props> = ({ data }) => {
             {data.bio}
           </p>
         </div>
-
         <div className="span-w-2 sm:span-w-4 lg:span-w-5 flex justify-center mt-8 sm:mt-4 lg:mt-0">
           <Image
             alt=""
             src={data.hero_picture}
             className="span-w-2 sm:span-w-4 lg:span-w-3 aspect-[3]"
           />
-          {/* <div
-            className={cn(" bg-cover bg-top", "bg-cover bg-no-repeat bg-top")}
-            style={{ backgroundImage: `url(hero.png)` }}></div> */}
         </div>
       </div>
     </section>
