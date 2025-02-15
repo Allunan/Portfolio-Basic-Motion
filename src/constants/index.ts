@@ -1,4 +1,11 @@
-import type { DataType } from "@/types"
+import type { Colors, DataType } from "@/types"
+
+export const colors: Colors = {
+  primary: "#55555E",
+  secondary: "#61616B",
+  muted: "#AFAFB6",
+  background: "#F2F2F3"
+}
 
 export const data: DataType = {
   name: "Ahmed l5dar",

@@ -31,3 +31,10 @@ export enum CardType {
   "IMAGE",
   "EMPTY"
 }
+
+export interface Colors {
+  primary: string
+  secondary: string
+  muted: string
+  background: string
+}

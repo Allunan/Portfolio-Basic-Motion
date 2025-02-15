@@ -11,6 +11,8 @@ import {
   tailwindCSSVars
 } from "./src/lib/tailwindcss/index.ts"
 
+import { colors } from "./src/constants/index.ts"
+
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
@@ -19,12 +21,7 @@ export default {
       gap: gap(),
       padding: padding(),
 
-      colors: {
-        primary: "#55555E",
-        secondary: "#61616B",
-        muted: "#AFAFB6",
-        background: "#F2F2F3"
-      },
+      colors,
 
       fontFamily: {
         sans: [
