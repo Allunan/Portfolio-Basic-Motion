@@ -1,14 +1,14 @@
 import React from "react"
 import { Image } from "../shared/image"
 
-interface Props {
+interface AboutProps {
   data: {
     bio: string
     hero_picture: string
   }
 }
 
-export const About: React.FC<Props> = ({ data }) => {
+export const About: React.FC<AboutProps> = ({ data }) => {
   return (
     <section className="pt-60 pb-32 mx-[var(--grid-margins)] border-b border-dashed border-[#AFAFB6] border-opacity-70">
       <div className="flex flex-wrap gap-base-2">
