@@ -1,9 +1,11 @@
+@import url("https://fonts.googleapis.com/css2?family=Finlandica:ital,wght@0,400..700;1,400..700&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@theme {
-  --spacing: 4px;
+*::-webkit-scrollbar {
+  display: none;
 }
 
 *,
@@ -12,11 +14,15 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Inter", sans-serif;
 }
 
 html,
-body {
+body,
+#root {
   min-width: 100dvw;
   min-height: 100dvh;
+}
+
+body {
+  @apply bg-background text-secondary text-sm font-medium uppercase font-sans leading-[1.1];
 }

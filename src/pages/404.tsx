@@ -1,7 +1,9 @@
-import type React from "react"
-
 const NotFound: React.FC = () => {
-  return <>404</>
+  return (
+    <section className="flex items-center justify-center w-dvw h-dvh text-5xl">
+      404
+    </section>
+  )
 }
 
 export default NotFound

@@ -1,4 +1,4 @@
-import { base } from "./base"
+import { base, grid } from "./base"
 
 /**
  * Generate Tailwind width values based on a given screen type.
@@ -133,6 +133,8 @@ export const padding = () => {
  */
 export const margin = () => {
   const margin: Record<string, string> = {}
+
+  margin[`grid`] = "var(--grid-margins)"
 
   for (let value = 1; value <= 64; value++) {
     margin[`base-${value}`] = `${base.spacing * value}px`

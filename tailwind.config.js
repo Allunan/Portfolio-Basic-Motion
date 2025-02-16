@@ -11,13 +11,38 @@ import {
   tailwindCSSVars
 } from "./src/lib/tailwindcss/index.ts"
 
+import { colors } from "./src/constants/index.ts"
+
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
       margin: margin(),
       gap: gap(),
-      padding: padding()
+      padding: padding(),
+
+      colors,
+
+      fontFamily: {
+        sans: [
+          "Finlandica",
+          "system-ui",
+          "-apple-system",
+          "BlinkMacSystemFont",
+          "Segoe UI",
+          "Roboto",
+          "Oxygen",
+          "Ubuntu",
+          "Cantarell",
+          "Open Sans",
+          "Helvetica Neue",
+          "sans-serif"
+        ]
+      },
+
+      aspectRatio: {
+        card: "3 / 4"
+      }
     }
   },
   plugins: [
