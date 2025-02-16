@@ -1,19 +1,33 @@
+import { useEffect, useRef } from "react"
+import { gsap } from "gsap"
 import type { DataType } from "@/types"
-
 import { Image } from "../shared/image"
+import { TextAnimated } from "../shared/textAnimated"
 
 interface Props {
   data: DataType
 }
 
 export const About: React.FC<Props> = ({ data }) => {
+  const headingRef = useRef<HTMLHeadingElement>(null)
+
+  useEffect(() => {
+    gsap.fromTo(
+      headingRef.current,
+      { opacity: 0 },
+      { opacity: 1, duration: 1.5, ease: "power2.out" }
+    )
+  }, [])
+
   return (
     <section
       id="about"
       className="pt-60 pb-32 mx-grid border-b border-dashed border-muted border-opacity-70">
       <div className="flex flex-wrap gap-base-2">
-        <h3 className="span-w-2 sm:span-w-1 text-muted">about me</h3>
-        <p className="span-w-2 sm:span-w-2 text-justify">{data.bio}</p>
+        <div className="span-w-2 sm:span-w-1 text-muted">
+          <h3 ref={headingRef}>about me</h3>
+        </div>
+        <TextAnimated className="span-w-2 sm:span-w-2">{data.bio}</TextAnimated>
         <div className="w-full lg:span-w-5 flex items-center justify-center">
           <Image
             alt=""
