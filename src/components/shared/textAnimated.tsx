@@ -11,6 +11,7 @@ export const TextAnimated: React.FC<React.ComponentProps<"div">> = ({
   const ref = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
+    gsap.registerPlugin(SplitType)
     // Split text into visual lines
     if (ref.current) {
       const splitText = new SplitType(ref.current, { types: "lines" })
@@ -23,19 +24,15 @@ export const TextAnimated: React.FC<React.ComponentProps<"div">> = ({
         line.innerHTML = "" // Clear the line's innerHTML
         line.appendChild(span) // Append the span to the line
         line.style.textAlign = "justify" // Justify the text
+        line.style.textAlignLast = "justify" // Justify the text
         line.style.overflow = "hidden" // Hide the overflow
         line.style.display = "block" // Make the line a block element
         line.style.width = "100%" // Make the line a block element
-        gsap.fromTo(
-          span,
-          { opacity: 0, transform: "translateY(-20px)" },
-          {
-            opacity: 1,
-            transform: "translateY(0)",
-            duration: 1.5,
-            ease: "power4.inOut"
-          }
-        )
+        gsap.from(span, {
+          duration: 1.5,
+          yPercent: -100,
+          ease: "power4.easeOut"
+        })
       })
     }
   }, [])
