@@ -8,13 +8,13 @@ import { About } from "@/components/sections/about"
 
 const Page: React.FC = () => {
   return (
-    <>
-        <Header data={data} />
-        <About data={data} />
-        <Works data={data} />
-        <Skills data={data} />
-        <Footer data={data} />
-    </>
+    <div className="mx-auto mxw:mx-0 max-w-[var(--grid-max-width)]">
+      <Header data={data} />
+      <About data={data} />
+      <Works data={data} />
+      <Skills data={data} />
+      <Footer data={data} />
+    </div>
   )
 }
 
