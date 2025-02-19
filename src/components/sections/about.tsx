@@ -12,11 +12,14 @@ export const About: React.FC<Props> = ({ data }) => {
   const headingRef = useRef<HTMLHeadingElement>(null)
 
   useEffect(() => {
-    gsap.fromTo(
+    const headingAnimation = gsap.fromTo(
       headingRef.current,
       { opacity: 0 },
       { opacity: 1, duration: 1.5, ease: "power2.out" }
     )
+    return () => {
+      headingAnimation.kill()
+    }
   }, [])
 
   return (

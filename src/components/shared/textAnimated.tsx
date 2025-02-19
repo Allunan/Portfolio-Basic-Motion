@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react"
 import { cn } from "@/utils"
 import SplitType from "split-type"
-import gsap from "gsap"
+import { gsap } from "gsap"
 
 export const TextAnimated: React.FC<React.ComponentProps<"div">> = ({
   className,
@@ -11,7 +11,7 @@ export const TextAnimated: React.FC<React.ComponentProps<"div">> = ({
   const ref = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
-    gsap.registerPlugin(SplitType)
+    const animations: gsap.core.Tween[] = []
     // Split text into visual lines
     if (ref.current) {
       const splitText = new SplitType(ref.current, { types: "lines" })
@@ -28,12 +28,18 @@ export const TextAnimated: React.FC<React.ComponentProps<"div">> = ({
         line.style.overflow = "hidden" // Hide the overflow
         line.style.display = "block" // Make the line a block element
         line.style.width = "100%" // Make the line a block element
-        gsap.from(span, {
+        const animation = gsap.from(span, {
           duration: 1.5,
           yPercent: -100,
           ease: "power4.easeOut"
         })
+
+        animations.push(animation)
       })
+    }
+
+    return () => {
+      animations.forEach((animation) => animation.kill())
     }
   }, [])
   return (
