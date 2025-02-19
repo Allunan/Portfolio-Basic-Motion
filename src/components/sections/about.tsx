@@ -15,7 +15,7 @@ export const About: React.FC<Props> = ({ data }) => {
     const headingAnimation = gsap.fromTo(
       headingRef.current,
       { opacity: 0 },
-      { opacity: 1, duration: 1.5, ease: "power2.out" }
+      { opacity: 1, duration: 1.5, ease: "easeInOut" }
     )
     return () => {
       headingAnimation.kill()
@@ -33,7 +33,10 @@ export const About: React.FC<Props> = ({ data }) => {
         <TextAnimated className="span-w-2 sm:span-w-2">{data.bio}</TextAnimated>
         <div className="w-full lg:span-w-5 flex items-center justify-center">
           <div className="aspect-[2/1.5] sm:aspect-[2/.85]">
-            <Image src={data.hero_picture} className="w-full lg:span-w-3 aspect-[2/1.5] sm:aspect-[2/.85]"/>
+            <Image
+              src={data.hero_picture}
+              className="w-full lg:span-w-3 aspect-[2/1.5] sm:aspect-[2/.85]"
+            />
           </div>
         </div>
       </div>

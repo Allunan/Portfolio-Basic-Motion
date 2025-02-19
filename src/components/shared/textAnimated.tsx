@@ -37,7 +37,7 @@ export const TextAnimated: React.FC<React.ComponentProps<"div">> = ({
         const animation = gsap.from(span, {
           duration: 1.5,
           yPercent: -100,
-          ease: "power4.easeOut"
+          ease: "easeInOut"
         })
 
         animations.push(animation)
