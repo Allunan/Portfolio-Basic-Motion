@@ -12,13 +12,15 @@ const cards: Record<
   CardType,
   ({ content }: { content: string }) => JSX.Element
 > = {
-  0: ({ content }) => (
+  [CardType.TEXT]: ({ content }) => (
     <div className="span-w-1 aspect-card">
       <p className="text-justify text">{content}</p>
     </div>
   ),
-  1: ({ content }) => <Image src={content} className="span-w-1 aspect-card" />,
-  2: () => <div className="span-w-1 aspect-card" />
+  [CardType.IMAGE]: ({ content }) => (
+    <Image src={content} className="span-w-1 aspect-card" />
+  ),
+  [CardType.EMPTY]: () => <div className="span-w-1 aspect-card" />
 }
 
 export const Project: React.FC<Props> = ({ data }) => {

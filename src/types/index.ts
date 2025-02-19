@@ -27,9 +27,9 @@ export interface DataType {
 }
 
 export enum CardType {
-  "TEXT",
-  "IMAGE",
-  "EMPTY"
+  TEXT = "TEXT",
+  IMAGE = "IMAGE",
+  EMPTY = "EMPTY"
 }
 
 export interface Colors {
