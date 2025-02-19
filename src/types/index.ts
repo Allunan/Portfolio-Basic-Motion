@@ -21,15 +21,16 @@ export interface DataType {
   name: string
   bio: string
   hero_picture: string
+  loader: string[]
   works: WorkType[]
   skills: SkillType[]
   socials: SocialType[]
 }
 
 export enum CardType {
-  "TEXT",
-  "IMAGE",
-  "EMPTY"
+  TEXT = "TEXT",
+  IMAGE = "IMAGE",
+  EMPTY = "EMPTY"
 }
 
 export interface Colors {
