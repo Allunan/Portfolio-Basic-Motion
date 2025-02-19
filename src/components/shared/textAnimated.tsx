@@ -17,17 +17,23 @@ export const TextAnimated: React.FC<React.ComponentProps<"div">> = ({
       const splitText = new SplitType(ref.current, { types: "lines" })
 
       // Animate each line
-      splitText.lines?.forEach((line) => {
+      splitText.lines?.forEach((line, i) => {
+        if (!splitText.lines) return
         const span = document.createElement("p")
         span.innerHTML = line.innerHTML // Copy the line's innerHTML
         span.style.width = "100%" // Make the line a block element
         line.innerHTML = "" // Clear the line's innerHTML
         line.appendChild(span) // Append the span to the line
-        line.style.textAlign = "justify" // Justify the text
-        line.style.textAlignLast = "justify" // Justify the text
         line.style.overflow = "hidden" // Hide the overflow
         line.style.display = "block" // Make the line a block element
         line.style.width = "100%" // Make the line a block element
+
+        // Apply justify text alignment except for the last line
+        if (i !== splitText.lines.length - 1) {
+          line.style.textAlign = "justify" // Justify the text
+          line.style.textAlignLast = "justify" // Justify the text
+        }
+
         const animation = gsap.from(span, {
           duration: 1.5,
           yPercent: -100,
