@@ -1,49 +1,79 @@
-import { CardType, WorkType } from "@/types"
+import type { WorkType } from "@/types"
 import { shuffle } from "@/utils/shuffle"
-import React from "react"
-import { Image } from "./shared/image"
-import { Link } from "./shared/link"
+import React, { useEffect, useRef } from "react"
+import { Link } from "@/components/shared/link"
+import gsap from "gsap"
+import { Card } from "@/components/shared/card"
 
-interface Props {
+interface ProjectProps {
   data: WorkType
 }
 
-const cards: Record<
-  CardType,
-  ({ content }: { content: string }) => JSX.Element
-> = {
-  [CardType.TEXT]: ({ content }) => (
-    <div className="span-w-1 aspect-card">
-      <p className="text-justify text">{content}</p>
-    </div>
-  ),
-  [CardType.IMAGE]: ({ content }) => (
-    <Image src={content} className="span-w-1 aspect-card" />
-  ),
-  [CardType.EMPTY]: () => <div className="span-w-1 aspect-card" />
-}
-
-export const Project: React.FC<Props> = ({ data }) => {
+export const Project: React.FC<ProjectProps> = ({ data }) => {
   const shuffled = shuffle(data)
+
+  const elementRefs = useRef<(HTMLElement | null)[]>([])
+
+  useEffect(() => {
+    const elements = elementRefs.current as HTMLElement[]
+
+    gsap.fromTo(
+      elements,
+      { opacity: 0 },
+      {
+        opacity: 1,
+        duration: 1.5,
+        ease: "easeInOut"
+      }
+    )
+
+    return () => {
+      gsap.killTweensOf(elements)
+    }
+  }, [])
 
   return (
     <div className="flex flex-wrap gap-base-2 py-2 border-b border-dashed border-muted border-opacity-70">
       <div className="span-w-1 aspect-card flex flex-col justify-between">
         <div className="flex flex-col gap-1">
-          <span className="text-muted">{data.index}</span>
-          <span className="text-primary text-lg">{data.title}</span>
+          <span
+            ref={(element) => {
+              elementRefs.current[0] = element
+            }}
+            className="text-muted">
+            {data.index}
+          </span>
+          <span
+            ref={(element) => {
+              elementRefs.current[1] = element
+            }}
+            className="text-primary text-lg">
+            {data.title}
+          </span>
         </div>
         <div className="flex w-full justify-between">
-          <span className="text-muted">{data.year}</span>
-          {data.preview && <Link href={data.preview}>Live Preview</Link>}
+          <span
+            ref={(element) => {
+              elementRefs.current[2] = element
+            }}
+            className="text-muted">
+            {data.year}
+          </span>
+          {data.preview && (
+            <Link
+              ref={(element) => {
+                elementRefs.current[3] = element
+              }}
+              href={data.preview}>
+              Live Preview
+            </Link>
+          )}
         </div>
       </div>
 
-      {shuffled.map(({ type, content }, index) => {
-        const Card = cards[type]
-
-        return <Card key={`${data.index}-${index}`} content={content} />
-      })}
+      {shuffled.map(({ type, content }, index) => (
+        <Card key={index} type={type} content={content} />
+      ))}
     </div>
   )
 }

@@ -1,24 +1,53 @@
-import { useEffect, useRef } from "react"
 import { cn } from "@/utils"
+import gsap from "gsap"
+import React, { forwardRef, useRef } from "react"
 
-export const Link: React.FC<React.ComponentProps<"a">> = ({
-  className,
-  children,
-  ...props
-}) => {
-  const ref = useRef<HTMLAnchorElement | null>(null)
+export const Link = forwardRef<
+  React.ElementRef<"a">,
+  React.ComponentProps<"a">
+>(({ className, children, ...props }, ref) => {
+  const underlineRef = useRef<HTMLHRElement | null>(null)
 
-  useEffect(() => {
-    const element = ref.current as HTMLAnchorElement
+  const onMouseEnter = () => {
+    gsap.fromTo(
+      underlineRef.current,
+      {
+        xPercent: 0
+      },
+      {
+        xPercent: 100,
+        duration: 0.7,
+        ease: "easeInOut"
+      }
+    )
+  }
 
-    // todo: we need to add animation here if we use GSAP or add motion.a if we use Framer Motion
-
-    return () => {}
-  }, [])
+  const onMouseLeave = () => {
+    gsap.fromTo(
+      underlineRef.current,
+      {
+        xPercent: 100
+      },
+      {
+        xPercent: 200,
+        duration: 0.7,
+        ease: "easeInOut"
+      }
+    )
+  }
 
   return (
-    <a ref={ref} className={cn("", className)} {...props}>
-      {children}
-    </a>
+    <div
+      className="relative w-fit overflow-hidden"
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}>
+      <a ref={ref} className={cn("hover:cursor-pointer", className)} {...props}>
+        {children}
+      </a>
+      <hr
+        ref={underlineRef}
+        className="absolute bottom-0 -left-full w-full border border-muted border-opacity-70"
+      />
+    </div>
   )
-}
+})

@@ -21,6 +21,7 @@ export interface DataType {
   name: string
   bio: string
   hero_picture: string
+  loader: string[]
   works: WorkType[]
   skills: SkillType[]
   socials: SocialType[]
