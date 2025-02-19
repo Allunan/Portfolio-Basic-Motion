@@ -32,11 +32,9 @@ export const About: React.FC<Props> = ({ data }) => {
         </div>
         <TextAnimated className="span-w-2 sm:span-w-2">{data.bio}</TextAnimated>
         <div className="w-full lg:span-w-5 flex items-center justify-center">
-          <Image
-            alt=""
-            src={data.hero_picture}
-            className="span-w-2 sm:span-w-4 lg:span-w-3 aspect-[2/1.5] sm:aspect-[2/.85]"
-          />
+          <div className="aspect-[2/1.5] sm:aspect-[2/.85]">
+            <Image src={data.hero_picture} className="w-full lg:span-w-3 aspect-[2/1.5] sm:aspect-[2/.85]"/>
+          </div>
         </div>
       </div>
     </section>

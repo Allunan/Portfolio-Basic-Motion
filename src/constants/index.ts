@@ -11,6 +11,16 @@ export const data: DataType = {
   name: "Ahmed l5dar",
   bio: "I'm a creative designer and developer with a keen eye for aesthetics and a love for turning ideas into digital art. This perspective helps me see the world as a canvas for innovation and design.",
   hero_picture: "/hero.png",
+  loader: [
+    "project 1 - image 2.png",
+    "project 1 - image 5.png",
+    "project 2 - image 1.png",
+    "project 2 - image 7.png",
+    "project 3 - image 2.png",
+    "project 3 - image 5.png",
+    "project 4 - image 4.png",
+    "project 4 - image 6.png"
+  ],
   works: [
     {
       index: "001",

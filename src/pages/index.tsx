@@ -9,11 +9,11 @@ import { About } from "@/components/sections/about"
 const Page: React.FC = () => {
   return (
     <>
-      <Header data={data} />
-      <About data={data} />
-      <Works data={data} />
-      <Skills data={data} />
-      <Footer data={data} />
+        <Header data={data} />
+        <About data={data} />
+        <Works data={data} />
+        <Skills data={data} />
+        <Footer data={data} />
     </>
   )
 }

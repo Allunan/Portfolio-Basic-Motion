@@ -1,4 +1,4 @@
-import { base, grid } from "./base"
+import { base } from "./base"
 
 /**
  * Generate Tailwind width values based on a given screen type.
