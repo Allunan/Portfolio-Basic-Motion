@@ -10,94 +10,102 @@ const getValidContentForIdx = (
   contents: Content[],
   textBeenUsed: boolean,
   remainingImages: number
-): CardType[] => {
-  const validTypes: CardType[] = []
-
-  if (idx === 0) {
-    return [CardType.EMPTY, CardType.IMAGE, CardType.TEXT] // First card can be anything
+) => {
+  const validContent: Record<CardType, boolean> = {
+    [CardType.EMPTY]: true,
+    [CardType.IMAGE]: true,
+    [CardType.TEXT]: true
   }
 
+  // First card can be anything
+  if (idx === 0) return validContent
+
+  // Text already been added so not valid anymore
+  if (textBeenUsed) validContent[CardType.TEXT] = false
+
+  if (remainingImages === 0) validContent[CardType.IMAGE] = false
+
+  // If the previous card is EMPTY, the current card cannot be EMPTY
+  if (contents[idx - 1].type === CardType.EMPTY)
+    validContent[CardType.EMPTY] = false
+
+  // If before last card and text not yet added, force it to
   if (!textBeenUsed && idx === contents.length - 2) {
-    return [CardType.TEXT] // Force text before the last card
+    validContent[CardType.EMPTY] = false
+    validContent[CardType.IMAGE] = false
+    return validContent
   }
 
-  if (idx === contents.length - 1 && contents[idx - 1].type === CardType.TEXT) {
-    return [CardType.IMAGE, CardType.EMPTY]
-  }
+  // Prevent adding empty card while remaning empty cards equal remaning unused images
+  if (contents.length - idx === remainingImages)
+    validContent[CardType.EMPTY] = false
 
-  if (textBeenUsed) {
-    validTypes.push(CardType.EMPTY, CardType.IMAGE)
-  } else {
-    validTypes.push(CardType.EMPTY, CardType.IMAGE, CardType.TEXT)
-  }
+  // Save last image to prevent having text then empty at the end
+  if (idx === contents.length - 3 && !textBeenUsed && remainingImages === 1)
+    validContent[CardType.IMAGE] = false
 
-  if (remainingImages === 0) {
-    validTypes.filter((type) => type !== CardType.IMAGE)
-  }
+  // Remaining cards are only enough for remaining images and text card
+  if (contents.length - idx === remainingImages + 1 && !textBeenUsed)
+    validContent[CardType.EMPTY] = false
 
-  if (contents[idx - 1].type === CardType.EMPTY) {
-    validTypes.filter((type) => type !== CardType.EMPTY)
-  }
+  // if last card and ->
+  if (idx === contents.length - 1)
+    if (contents[idx - 1].type === CardType.TEXT)
+      // previous card was TEXT, current card can't be EMPTY
+      validContent[CardType.EMPTY] = false
 
-  if (contents.length - idx === remainingImages) {
-    validTypes.filter((type) => type !== CardType.EMPTY)
-  }
-
-  if (idx === contents.length - 3 && !textBeenUsed && remainingImages === 1) {
-    validTypes.filter((type) => type !== CardType.IMAGE)
-  }
-
-  if (contents.length - idx === remainingImages + 1 && !textBeenUsed) {
-    validTypes.filter((type) => type !== CardType.EMPTY)
-  }
-
-  return validTypes
+  return validContent
 }
 
-export const shuffle = ({ images, description }: WorkType): Content[] => {
+export const shuffle = ({ images, description }: WorkType) => {
   const targetLength = 7
-  const content: Content[] = []
+
+  const content: Content[] = new Array(targetLength).fill({
+    type: CardType.EMPTY,
+    content: ""
+  })
+
   const remainingImages = [...images]
   let textBeenUsed = false
 
   for (let i = 0; i < targetLength; i++) {
-    const validTypes = getValidContentForIdx(
+    const validContent = getValidContentForIdx(
       i,
       content,
       textBeenUsed,
       remainingImages.length
     )
 
-    if (validTypes.length === 0) {
-      // Handle the case where no valid types are available (should be rare)
-      console.warn(
-        "No valid card types available. Returning a partial shuffle."
-      )
-      return content // Or throw an error, depending on your needs.
+    const _validTypes = Object.entries(validContent)
+      .filter(([_, valid]) => valid)
+      .map(([type]) => type as CardType)
+
+    const validTypes = [..._validTypes, ..._validTypes] // Double the odds I guess ?
+
+    const randomType = validTypes[getRandomNumber(validTypes.length)]
+    if (randomType === CardType.TEXT) {
+      textBeenUsed = true
+      content[i] = {
+        type: CardType.TEXT,
+        content: description
+      }
     }
 
-    const randomType = validTypes[Math.floor(Math.random() * validTypes.length)]
-
-    switch (randomType) {
-      case CardType.TEXT:
-        textBeenUsed = true
-        content.push({ type: CardType.TEXT, content: description })
-        break
-      case CardType.IMAGE:
-        const randomIndex = Math.floor(Math.random() * remainingImages.length)
-        content.push({
-          type: CardType.IMAGE,
-          content: remainingImages[randomIndex]
-        })
-        remainingImages.splice(randomIndex, 1)
-        break
-      case CardType.EMPTY:
-        content.push({ type: CardType.EMPTY, content: "" })
-        break
+    if (randomType === CardType.IMAGE) {
+      const randomIndex = getRandomNumber(remainingImages.length)
+      content[i] = {
+        type: CardType.IMAGE,
+        content: remainingImages[randomIndex]
+      }
+      remainingImages.splice(randomIndex, 1)
     }
   }
 
   return content
+}
+
+const getRandomNumber = (max: number) => {
+  return Math.floor(Math.random() * max)
 }
 
 // OLD SHUFFLE
