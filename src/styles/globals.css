@@ -18,10 +18,10 @@
 
 html,
 body,
-/* #root {
-  min-width: 100dvw;
+#root {
+  width: 100dvw;
   min-height: 100dvh;
-} */
+}
 
 body {
   @apply bg-background text-secondary text-sm font-medium uppercase font-sans leading-[1.1];
