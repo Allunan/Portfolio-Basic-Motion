@@ -14,7 +14,6 @@ export const Image: React.FC<Props> = ({
   const containerRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
-
     const container = containerRef.current as HTMLDivElement
 
     fadeIn &&
