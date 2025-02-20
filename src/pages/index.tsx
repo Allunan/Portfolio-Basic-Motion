@@ -1,4 +1,4 @@
-import { data } from "@/constants"
+import { data } from "@/configurations"
 
 import { Footer } from "@/components/sections/footer"
 import { Header } from "@/components/sections/header"

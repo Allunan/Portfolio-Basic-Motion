@@ -7,16 +7,6 @@ interface LoadingScreenProps {
   onLoadingComplete: () => void
 }
 
-// const images = [
-//   "https://images.unsplash.com/photo-1707343843437-caacff5cfa74?w=500&auto=format",
-//   "https://images.unsplash.com/photo-1707345512638-997d31a10eaa?w=500&auto=format",
-//   "https://images.unsplash.com/photo-1706463629335-d92264bbfd6f?w=500&auto=format",
-//   "https://images.unsplash.com/photo-1707343848723-bd87dea7b118?w=500&auto=format",
-//   "https://images.unsplash.com/photo-1707243631474-b962956ea3a5?w=500&auto=format",
-//   "https://images.unsplash.com/photo-1707295332986-c4d14ef23ac5?w=500&auto=format",
-//   "https://images.unsplash.com/photo-1707317674328-ddb30f0207f5?w=500&auto=format"
-// ]
-
 const LoadingScreen: React.FC<LoadingScreenProps> = ({
   onLoadingComplete,
   data
