@@ -14,7 +14,7 @@ const Page: React.FC = () => {
 
   return (
     <>
-      {isLoading ? (
+      {/* {isLoading ? (
         <LoadingScreen
           data={data}
           onLoadingComplete={() => {
@@ -29,7 +29,14 @@ const Page: React.FC = () => {
           <Skills data={data} />
           <Footer data={data} />
         </>
-      )}
+      )} */}
+      <>
+        <Header data={data} />
+        <About data={data} />
+        <Works data={data} />
+        <Skills data={data} />
+        <Footer data={data} />
+      </>
     </>
   )
 }

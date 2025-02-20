@@ -1,5 +1,6 @@
 import { cn } from "@/utils"
 import gsap from "gsap"
+import { Flip } from "gsap/Flip"
 import { useEffect, useRef } from "react"
 
 interface Props extends React.ComponentProps<"img"> {
@@ -12,10 +13,33 @@ export const Image: React.FC<Props> = ({
   ...props
 }) => {
   const containerRef = useRef<HTMLDivElement | null>(null)
+  const state = useRef<ReturnType<typeof Flip.getState>>()
 
   useEffect(() => {
     const container = containerRef.current as HTMLDivElement
-
+    if (!fadeIn) {
+      gsap.set(container, {
+        position: "fixed",
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%, -50%)"
+      })
+      state.current = Flip.getState(container)
+      setTimeout(() => {
+        if (state.current) {
+          gsap.set(container, {
+            position: "relative",
+            top: "0",
+            left: "0",
+            transform: "none"
+          })
+          Flip.from(state.current, {
+            duration: 1.5,
+            ease: "easeInOut"
+          })
+        }
+      }, 2000)
+    }
     fadeIn &&
       gsap.fromTo(
         container,
