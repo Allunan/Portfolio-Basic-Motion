@@ -1,8 +1,7 @@
-import React from "react"
-
 import type { DataType } from "@/types"
 
-import { Project } from "../project"
+import { Project } from "@/components"
+import React from "react"
 
 interface Props {
   data: DataType

@@ -1,9 +1,9 @@
 import type { WorkType } from "@/types"
-import { shuffle } from "@/utils/shuffle"
-import React, { useEffect, useRef } from "react"
-import { Link } from "@/components/shared/link"
+
+import { Card, Link } from "@/components"
+import { shuffle } from "@/utils"
 import gsap from "gsap"
-import { Card } from "@/components/shared/card"
+import React, { useEffect, useRef } from "react"
 
 interface ProjectProps {
   data: WorkType

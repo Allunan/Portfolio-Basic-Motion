@@ -33,7 +33,7 @@ export enum CardType {
   EMPTY = "EMPTY"
 }
 
-export interface Colors {
+export interface Theme {
   primary: string
   secondary: string
   muted: string

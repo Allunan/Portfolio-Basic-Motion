@@ -1,6 +1,6 @@
-import type { Colors, DataType } from "@/types"
+import type { Theme, DataType } from "@/types"
 
-export const colors: Colors = {
+export const theme: Theme = {
   primary: "#55555E",
   secondary: "#61616B",
   muted: "#AFAFB6",
