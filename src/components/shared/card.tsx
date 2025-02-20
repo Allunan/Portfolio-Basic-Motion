@@ -1,8 +1,9 @@
 import { CardType } from "@/types"
-import React, { useEffect, useRef } from "react"
-import { Image } from "@/components/shared/image"
-import { data } from "@/constants"
+
+import { Image } from "@/components"
+import { data } from "@/configurations"
 import gsap from "gsap"
+import { useEffect, useRef } from "react"
 
 interface CardProps {
   type: CardType

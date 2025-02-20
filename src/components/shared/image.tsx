@@ -1,6 +1,6 @@
-import { useEffect, useRef } from "react"
 import { cn } from "@/utils"
 import gsap from "gsap"
+import { useEffect, useRef } from "react"
 
 interface Props extends React.ComponentProps<"img"> {
   fadeIn?: boolean
@@ -14,7 +14,6 @@ export const Image: React.FC<Props> = ({
   const containerRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
-
     const container = containerRef.current as HTMLDivElement
 
     fadeIn &&

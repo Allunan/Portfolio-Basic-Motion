@@ -1,6 +1,6 @@
 import type { DataType } from "@/types"
 
-import { Link } from "@/components/shared/link"
+import { Link } from "@/components"
 
 interface Props {
   data: DataType

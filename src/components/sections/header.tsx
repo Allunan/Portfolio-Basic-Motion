@@ -1,7 +1,6 @@
 import type { DataType } from "@/types"
 
-import { Link } from "@/components/shared/link"
-import Lenis from "lenis"
+import { Link } from "@/components"
 import { useLenis } from "lenis/react"
 
 interface Props {
@@ -25,6 +24,7 @@ const links = [
 
 export const Header: React.FC<Props> = ({ data }) => {
   const lenis = useLenis()
+
   return (
     <header className="mx-grid py-4 flex gap-base-2 justify-between sm:items-center">
       <div className="span-w-1">

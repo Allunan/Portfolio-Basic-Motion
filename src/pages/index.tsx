@@ -1,10 +1,10 @@
-import { data } from "@/constants"
+import { data } from "@/configurations"
 
-import { Footer } from "@/components/sections/footer"
-import { Header } from "@/components/sections/header"
-import { Skills } from "@/components/sections/skills"
-import { Works } from "@/components/sections/works"
-import { About } from "@/components/sections/about"
+import { About } from "@/components"
+import { Footer } from "@/components"
+import { Header } from "@/components"
+import { Skills } from "@/components"
+import { Works } from "@/components"
 
 const Page: React.FC = () => {
   return (

@@ -1,8 +1,8 @@
-import { useEffect, useRef } from "react"
-import { gsap } from "gsap"
 import type { DataType } from "@/types"
-import { Image } from "../shared/image"
-import { TextAnimated } from "../shared/textAnimated"
+
+import { Image, TextAnimated } from "@/components"
+import { gsap } from "gsap"
+import { useEffect, useRef } from "react"
 
 interface Props {
   data: DataType

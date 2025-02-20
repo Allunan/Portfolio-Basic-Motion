@@ -1,7 +1,7 @@
-import { useEffect, useRef } from "react"
 import { cn } from "@/utils"
-import SplitType from "split-type"
 import { gsap } from "gsap"
+import { useEffect, useRef } from "react"
+import SplitType from "split-type"
 
 export const TextAnimated: React.FC<React.ComponentProps<"div">> = ({
   className,
