@@ -5,13 +5,19 @@ import { useEffect, useRef } from "react"
 
 interface Props extends React.ComponentProps<"img"> {
   fadeIn?: boolean
-  count: number
+  count?: number
+  durations?: {
+    flipDuration: number
+    staggerScaleDowImage: number
+    durationScaleDownImage: number
+  }
 }
 
 export const Image: React.FC<Props> = ({
   className,
   count,
   fadeIn = true,
+  durations,
   ...props
 }) => {
   const containerRef = useRef<HTMLDivElement | null>(null)
@@ -20,9 +26,10 @@ export const Image: React.FC<Props> = ({
 
   useEffect(() => {
     const wrapper = wrapperRef.current as HTMLDivElement
-    const staggerScaleDowImage = 400
-    const durationScaleDownImage = 300
-    if (!fadeIn) {
+
+    if (!fadeIn && durations && count) {
+      const { flipDuration, staggerScaleDowImage, durationScaleDownImage } =
+        durations
       gsap.set(wrapper, {
         position: "fixed",
         top: "50%",
@@ -41,15 +48,17 @@ export const Image: React.FC<Props> = ({
               transform: "none"
             })
             Flip.from(state.current, {
-              duration: 1.5,
+              duration: flipDuration,
               ease: "easeInOut"
             })
           }
         },
-        count * staggerScaleDowImage + durationScaleDownImage
+        count * staggerScaleDowImage * 1000 + durationScaleDownImage * 1000
       )
     }
     fadeIn &&
+      durations &&
+      count &&
       gsap.fromTo(
         wrapper,
         {
@@ -58,6 +67,8 @@ export const Image: React.FC<Props> = ({
         {
           clipPath: "inset(0% 0% 0% 0%)",
           duration: 1.5,
+          delay:
+            durations.flipDuration + count * durations.staggerScaleDowImage,
           ease: "easeInOut"
         }
       )

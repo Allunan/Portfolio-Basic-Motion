@@ -12,14 +12,19 @@ import {
 const Page: React.FC = () => {
   const { loader } = data
   const count = loader.length
+  const durations = {
+    flipDuration: 1.5,
+    staggerScaleDowImage: 0.3,
+    durationScaleDownImage: 0.3
+  }
   return (
     <>
       <Header data={data} />
-      <About data={data} />
-      <Works data={data} count={count} />
+      <About data={data} count={count} durations={durations} />
+      <Works data={data} count={count} durations={durations} />
       <Skills data={data} />
       <Footer data={data} />
-      <LoadingScreen data={data} />
+      <LoadingScreen count={count} durations={durations} />
     </>
   )
 }

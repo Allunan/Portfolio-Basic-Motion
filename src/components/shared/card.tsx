@@ -9,6 +9,11 @@ interface CardProps {
   type: CardType
   content: string
   count: number
+  durations: {
+    flipDuration: number
+    staggerScaleDowImage: number
+    durationScaleDownImage: number
+  }
 }
 
 const TextCard: React.FC<{ content: string }> = ({ content }) => {
@@ -41,7 +46,12 @@ const TextCard: React.FC<{ content: string }> = ({ content }) => {
   )
 }
 
-export const Card: React.FC<CardProps> = ({ type, content, count }) => {
+export const Card: React.FC<CardProps> = ({
+  type,
+  content,
+  count,
+  durations
+}) => {
   const cardsNodes: Record<CardType, React.ReactNode> = {
     [CardType.IMAGE]: (
       <Image
@@ -49,6 +59,7 @@ export const Card: React.FC<CardProps> = ({ type, content, count }) => {
         count={count}
         className="span-w-1 aspect-card"
         fadeIn={!data.loader.includes(content)}
+        durations={durations}
       />
     ),
     [CardType.TEXT]: <TextCard content={content} />,

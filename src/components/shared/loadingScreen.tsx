@@ -3,15 +3,18 @@ import { gsap } from "gsap"
 import type { DataType } from "@/types"
 
 interface Props {
-  data: DataType
+  count: number
+  durations: {
+    flipDuration: number
+    staggerScaleDowImage: number
+    durationScaleDownImage: number
+  }
 }
 
-export const LoadingScreen: React.FC<Props> = ({ data }) => {
+export const LoadingScreen: React.FC<Props> = ({ count, durations }) => {
   const containerRef = useRef<HTMLDivElement>(null)
-  const { loader } = data
-  const count = loader.length
-  const flipDuration = 1.5
-  const staggerScaleDowImage = 0.4
+  const { flipDuration, staggerScaleDowImage, durationScaleDownImage } =
+    durations
   useEffect(() => {
     gsap.to(containerRef.current, {
       opacity: 0,
@@ -31,8 +34,8 @@ export const LoadingScreen: React.FC<Props> = ({ data }) => {
       {
         scale: 1,
         opacity: 1,
-        stagger: 0.3,
-        duration: 0.3,
+        stagger: durationScaleDownImage,
+        duration: staggerScaleDowImage,
         ease: "easeInOut"
       }
     )
