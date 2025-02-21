@@ -8,6 +8,7 @@ import { useEffect, useRef } from "react"
 interface CardProps {
   type: CardType
   content: string
+  count: number
 }
 
 const TextCard: React.FC<{ content: string }> = ({ content }) => {
@@ -40,11 +41,12 @@ const TextCard: React.FC<{ content: string }> = ({ content }) => {
   )
 }
 
-export const Card: React.FC<CardProps> = ({ type, content }) => {
+export const Card: React.FC<CardProps> = ({ type, content, count }) => {
   const cardsNodes: Record<CardType, React.ReactNode> = {
     [CardType.IMAGE]: (
       <Image
         src={content}
+        count={count}
         className="span-w-1 aspect-card"
         fadeIn={!data.loader.includes(content)}
       />
