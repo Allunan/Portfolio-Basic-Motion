@@ -7,9 +7,15 @@ import React, { useEffect, useRef } from "react"
 
 interface ProjectProps {
   data: WorkType
+  count: number
+  durations: {
+    flipDuration: number
+    staggerScaleDowImage: number
+    durationScaleDownImage: number
+  }
 }
 
-export const Project: React.FC<ProjectProps> = ({ data }) => {
+export const Project: React.FC<ProjectProps> = ({ data, count, durations }) => {
   const shuffled = shuffle(data)
 
   const elementRefs = useRef<(HTMLElement | null)[]>([])
@@ -72,7 +78,13 @@ export const Project: React.FC<ProjectProps> = ({ data }) => {
       </div>
 
       {shuffled.map(({ type, content }, index) => (
-        <Card key={index} type={type} content={content} />
+        <Card
+          key={index}
+          type={type}
+          content={content}
+          count={count}
+          durations={durations}
+        />
       ))}
     </div>
   )

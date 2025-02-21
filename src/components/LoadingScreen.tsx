@@ -30,7 +30,6 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({
         })
       }
     })
-    console.log(imagesRef.current[0]?.x)
 
     // Initial setup - all images invisible and centered
     gsap.set(imagesRef.current, {

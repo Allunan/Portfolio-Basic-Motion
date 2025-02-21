@@ -3,9 +3,19 @@ import { gsap } from "gsap"
 import { useEffect, useRef } from "react"
 import SplitType from "split-type"
 
-export const TextAnimated: React.FC<React.ComponentProps<"div">> = ({
+interface Props extends React.ComponentProps<"div"> {
+  durations?: {
+    flipDuration: number
+    staggerScaleDowImage: number
+    durationScaleDownImage: number
+  }
+  count?: number
+}
+export const TextAnimated: React.FC<Props> = ({
   className,
   children,
+  count,
+  durations,
   ...props
 }) => {
   const ref = useRef<HTMLDivElement | null>(null)
@@ -37,7 +47,11 @@ export const TextAnimated: React.FC<React.ComponentProps<"div">> = ({
         const animation = gsap.from(span, {
           duration: 1.5,
           yPercent: -100,
-          ease: "easeInOut"
+          ease: "easeInOut",
+          delay:
+            durations &&
+            count &&
+            durations.flipDuration + count * durations.staggerScaleDowImage
         })
 
         animations.push(animation)

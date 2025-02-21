@@ -1,35 +1,30 @@
 import { data } from "@/configurations"
 
-import { Footer } from "@/components/sections/footer"
-import { Header } from "@/components/sections/header"
-import { Skills } from "@/components/sections/skills"
-import { Works } from "@/components/sections/works"
-import { About } from "@/components/sections/about"
-import LoadingScreen from "@/components/LoadingScreen"
-import { useState } from "react"
+import {
+  LoadingScreen,
+  Footer,
+  Header,
+  Skills,
+  Works,
+  About
+} from "@/components"
 
 const Page: React.FC = () => {
-  const [isLoading, setIsLoading] = useState<boolean>(true)
-  const [imagesPosition, setImagesPosition] = useState<[]>([])
-
+  const { loader } = data
+  const count = loader.length
+  const durations = {
+    flipDuration: 1.5,
+    staggerScaleDowImage: 0.3,
+    durationScaleDownImage: 0.3
+  }
   return (
     <>
-      {isLoading ? (
-        <LoadingScreen
-          data={data}
-          onLoadingComplete={() => {
-            setIsLoading(false)
-          }}
-        />
-      ) : (
-        <>
-          <Header data={data} />
-          <About data={data} />
-          <Works data={data} />
-          <Skills data={data} />
-          <Footer data={data} />
-        </>
-      )}
+      <Header data={data} />
+      <About data={data} count={count} durations={durations} />
+      <Works data={data} count={count} durations={durations} />
+      <Skills data={data} />
+      <Footer data={data} />
+      <LoadingScreen count={count} durations={durations} />
     </>
   )
 }
