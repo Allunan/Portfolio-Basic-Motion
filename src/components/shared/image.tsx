@@ -24,6 +24,10 @@ export const Image: React.FC<Props> = ({
   const wrapperRef = useRef<HTMLDivElement | null>(null)
   const state = useRef<ReturnType<typeof Flip.getState>>()
 
+  const getState = () => {
+    state.current = Flip.getState(wrapperRef.current as HTMLDivElement)
+  }
+
   useEffect(() => {
     const wrapper = wrapperRef.current as HTMLDivElement
 
@@ -37,7 +41,10 @@ export const Image: React.FC<Props> = ({
         zIndex: 100,
         transform: "translate(-50%, -50%)"
       })
-      state.current = Flip.getState(wrapper)
+
+      getState()
+      window.addEventListener("resize", getState)
+			
       setTimeout(
         () => {
           if (state.current) {
@@ -75,6 +82,7 @@ export const Image: React.FC<Props> = ({
 
     return () => {
       gsap.killTweensOf(wrapper)
+      window.removeEventListener("resize", getState)
     }
   }, [fadeIn])
 
