@@ -16,7 +16,15 @@ interface CardProps {
   }
 }
 
-const TextCard: React.FC<{ content: string }> = ({ content }) => {
+const TextCard: React.FC<{
+  content: string
+  count: number
+  durations: {
+    flipDuration: number
+    staggerScaleDowImage: number
+    durationScaleDownImage: number
+  }
+}> = ({ content, count, durations }) => {
   const containerRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
@@ -30,6 +38,7 @@ const TextCard: React.FC<{ content: string }> = ({ content }) => {
       {
         clipPath: "inset(0% 0% 0% 0%)",
         duration: 1.5,
+        delay: durations.flipDuration + count * durations.staggerScaleDowImage,
         ease: "easeInOut"
       }
     )
@@ -62,7 +71,9 @@ export const Card: React.FC<CardProps> = ({
         durations={durations}
       />
     ),
-    [CardType.TEXT]: <TextCard content={content} />,
+    [CardType.TEXT]: (
+      <TextCard content={content} durations={durations} count={count} />
+    ),
     [CardType.EMPTY]: <div className="span-w-1 aspect-card" />
   }
 
