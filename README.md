@@ -2,10 +2,6 @@
 
 This template is crafted by "**Collective**", a group of Moroccan web developers dedicated to simplifying project initiation and collaboration. Our mission focuses on contributing to open-source projects, particularly in the realm of creative development.
 
-## Routing
-
-this template uses `generouted/react-router` for routing, in generouted, pages are created in the `src/pages` directory. for more information, see the [generouted documentation](https://github.com/oedotme/generouted/blob/main/packages/generouted/readme.md#conventions)
-
 ## Folder Structure
 
 The project is structured as follows:
