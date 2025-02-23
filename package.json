@@ -13,7 +13,6 @@
     "lint:fix": "eslint . --fix"
   },
   "dependencies": {
-    "@generouted/react-router": "^1.19.10",
     "axios": "^1.7.9",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
