@@ -29,6 +29,7 @@ export const Project: React.FC<ProjectProps> = ({ data, count, durations }) => {
       {
         opacity: 1,
         duration: 1.5,
+        delay: durations.flipDuration + count * durations.staggerScaleDowImage,
         ease: "easeInOut"
       }
     )
