@@ -34,6 +34,7 @@ export const Image: React.FC<Props> = ({
     if (!fadeIn && durations && count) {
       const { flipDuration, staggerScaleDowImage, durationScaleDownImage } =
         durations
+
       gsap.set(wrapper, {
         position: "fixed",
         top: "50%",
@@ -44,7 +45,7 @@ export const Image: React.FC<Props> = ({
 
       getState()
       window.addEventListener("resize", getState)
-			
+
       setTimeout(
         () => {
           if (state.current) {
@@ -54,6 +55,7 @@ export const Image: React.FC<Props> = ({
               left: "0",
               transform: "none"
             })
+
             Flip.from(state.current, {
               duration: flipDuration,
               ease: "easeInOut"
