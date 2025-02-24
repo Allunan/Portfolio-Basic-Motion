@@ -49,6 +49,7 @@ export const Image: React.FC<Props> = ({
       setTimeout(
         () => {
           if (state.current) {
+            state.current = Flip.getState(wrapperRef.current as HTMLDivElement)
             gsap.set(wrapper, {
               position: "relative",
               top: "0",
@@ -58,6 +59,8 @@ export const Image: React.FC<Props> = ({
 
             Flip.from(state.current, {
               duration: flipDuration,
+              simple: true,
+              scale: true,
               ease: "easeInOut"
             })
           }
