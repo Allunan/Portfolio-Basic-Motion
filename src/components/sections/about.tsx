@@ -17,12 +17,6 @@ interface Props {
 export const About: React.FC<Props> = ({ data, count, durations }) => {
   const headingRef = useRef<HTMLHeadingElement>(null)
 
-  console.log(
-    durations &&
-      count &&
-      durations.flipDuration + count * durations.staggerScaleDowImage
-  )
-
   useEffect(() => {
     const headingAnimation = gsap.fromTo(
       headingRef.current,
