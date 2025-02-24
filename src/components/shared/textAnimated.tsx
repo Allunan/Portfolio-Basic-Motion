@@ -1,6 +1,7 @@
+import useScreenSize from "@/hooks/useScreenSize"
 import { cn } from "@/utils"
 import { gsap } from "gsap"
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import SplitType from "split-type"
 
 interface Props extends React.ComponentProps<"div"> {
@@ -19,7 +20,8 @@ export const TextAnimated: React.FC<Props> = ({
   ...props
 }) => {
   const ref = useRef<HTMLDivElement | null>(null)
-
+  const [hasAnimated, setHasAnimated] = useState(false)
+  const screeenSize = useScreenSize()
   useEffect(() => {
     const animations: gsap.core.Tween[] = []
     // Split text into visual lines
@@ -43,25 +45,27 @@ export const TextAnimated: React.FC<Props> = ({
           line.style.textAlign = "justify" // Justify the text
           line.style.textAlignLast = "justify" // Justify the text
         }
+        if (!hasAnimated) {
+          const animation = gsap.from(span, {
+            duration: 1.5,
+            yPercent: -100,
+            ease: "easeInOut",
+            delay:
+              durations &&
+              count &&
+              durations.flipDuration + count * durations.staggerScaleDowImage
+          })
 
-        const animation = gsap.from(span, {
-          duration: 1.5,
-          yPercent: -100,
-          ease: "easeInOut",
-          delay:
-            durations &&
-            count &&
-            durations.flipDuration + count * durations.staggerScaleDowImage
-        })
-
-        animations.push(animation)
+          animations.push(animation)
+          setHasAnimated(true)
+        }
       })
     }
 
     return () => {
       animations.forEach((animation) => animation.kill())
     }
-  }, [])
+  }, [screeenSize])
   return (
     <div ref={ref} className={cn("", className)} {...props}>
       {children}
