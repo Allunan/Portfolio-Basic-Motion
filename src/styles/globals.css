@@ -26,3 +26,11 @@ body,
 body {
   @apply bg-background text-secondary text-sm font-medium uppercase font-sans leading-[1.1];
 }
+
+.text-justify-last {
+  text-align-last: justify;
+
+	&:last-child {
+		text-align-last: start;
+	}
+}
