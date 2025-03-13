@@ -32,9 +32,9 @@ export const data: DataType = {
       images: [
         "project 1 - image 1.png",
         "project 1 - image 2.png",
+        "project 1 - image 3.png",
         "project 1 - image 4.png",
-        "project 1 - image 5.png",
-        "project 1 - image 7.png"
+        "project 1 - image 5.png"
       ]
     },
     {
@@ -45,9 +45,9 @@ export const data: DataType = {
         "Interactive experience to create your own unique one-of-a-kind music pass with generative artwork and your own sonic anthem.",
       images: [
         "project 2 - image 1.png",
+        "project 2 - image 2.png",
         "project 2 - image 3.png",
-        "project 2 - image 4.png",
-        "project 2 - image 7.png"
+        "project 2 - image 4.png"
       ]
     },
     {
@@ -58,11 +58,11 @@ export const data: DataType = {
       description:
         "Interactive experience to create your own unique one-of-a-kind music pass with generative artwork and your own sonic anthem.",
       images: [
+        "project 3 - image 1.png",
         "project 3 - image 2.png",
+        "project 3 - image 3.png",
         "project 3 - image 4.png",
-        "project 3 - image 5.png",
-        "project 3 - image 6.png",
-        "project 3 - image 7.png"
+        "project 3 - image 5.png"
       ]
     },
     {
@@ -75,9 +75,9 @@ export const data: DataType = {
       images: [
         "project 4 - image 1.png",
         "project 4 - image 2.png",
+        "project 4 - image 3.png",
         "project 4 - image 4.png",
-        "project 4 - image 6.png",
-        "project 4 - image 7.png"
+        "project 4 - image 5.png"
       ]
     }
   ],
